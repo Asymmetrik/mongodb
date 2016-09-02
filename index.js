@@ -277,6 +277,9 @@ var MongodbDriver = Base.extend({
 
     return new Promise(function(resolve, reject) {
       var prCB = function(err, data) {
+        if (err) {
+          console.error(err); //TODO: Added to show the error
+        }
         return (err ? reject(err) : resolve(data));
       };
 
@@ -284,7 +287,7 @@ var MongodbDriver = Base.extend({
       this.connection.connect(this.connectionString, function(err, db) {
 
         if(err) {
-          prCB(err);
+          return prCB(err); // Added a return to short-circuit here.
         }
 
         // Callback function to return mongo records
