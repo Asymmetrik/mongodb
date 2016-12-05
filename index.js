@@ -288,9 +288,6 @@ var MongodbDriver = Base.extend({
 
     return new Promise(function(resolve, reject) {
       var prCB = function(err, data) {
-        if (err) {
-          console.error(err); //TODO: Added to show the error
-        }
         return (err ? reject(err) : resolve(data));
       };
 
